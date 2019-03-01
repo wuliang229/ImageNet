@@ -42,61 +42,57 @@ def _my_model(images, is_training, n_outputs=50):
   H, W, C = (images.get_shape()[1].value, 
              images.get_shape()[2].value, 
              images.get_shape()[3].value)
-
-  print(is_training)
   x = images
-  # for layer_id, (k_size, next_c) in enumerate(zip(kernel_sizes, num_channels)):
 
-    # curr_c = x.get_shape()[-1].value # number of channels
   with tf.variable_scope("cnn", reuse = tf.AUTO_REUSE):
-
     # 1
     w = tf.get_variable("w1", [3, 3, 3, 32])
     x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
     x = tf.nn.relu(x)
     x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn1"), lambda: batch_norm(x, False, name = "bn1")) # BN
-    # x = batch_norm(x, is_training, name = "bn1")
 
-    # # 2
-    # w = tf.get_variable("w2", [3, 3, 32, 32])
-    # x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
-    # x = tf.nn.relu(x)
-    # x = batch_norm(x, is_train, name = "bn2") # BN
-    # x = tf.layers.max_pooling2d(x, 2, 2) # Pooling
-    # x = tf.layers.dropout(x, rate=0.2, training=is_train) # Dropout
+    # 2
+    w = tf.get_variable("w2", [3, 3, 32, 32])
+    x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
+    x = tf.nn.relu(x)
+    x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn2"), lambda: batch_norm(x, False, name = "bn2")) # BN
+    x = tf.layers.max_pooling2d(x, 2, 2) # Pooling
+    x = tf.layers.dropout(x, rate=0.2, training=is_training) # Dropout
 
-    # # 3
-    # w = tf.get_variable("w3", [3, 3, 32, 64])
-    # x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
-    # x = tf.nn.relu(x)
-    # x = batch_norm(x, is_train, name = "bn3") # BN
+    # 3
+    w = tf.get_variable("w3", [3, 3, 32, 64])
+    x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
+    x = tf.nn.relu(x)
+    x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn3"), lambda: batch_norm(x, False, name = "bn3")) # BN
 
-    # # 4
-    # w = tf.get_variable("w4", [3, 3, 64, 64])
-    # x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
-    # x = tf.nn.relu(x)
-    # x = batch_norm(x, is_train, name = "bn4") # BN
-    # x = tf.layers.max_pooling2d(x, 2, 2) # Pooling
-    # x = tf.layers.dropout(x, rate=0.3, training=is_train) # Dropout
+    # 4
+    w = tf.get_variable("w4", [3, 3, 64, 64])
+    x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
+    x = tf.nn.relu(x)
+    x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn4"), lambda: batch_norm(x, False, name = "bn4")) # BN
+    x = tf.layers.max_pooling2d(x, 2, 2) # Pooling
+    x = tf.layers.dropout(x, rate=0.3, training=is_training) # Dropout
 
-    # # 5
-    # w = tf.get_variable("w5", [3, 3, 64, 128])
-    # x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
-    # x = tf.nn.relu(x)
-    # x = batch_norm(x, is_train, name = "bn5") # BN
+    # 5
+    w = tf.get_variable("w5", [3, 3, 64, 128])
+    x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
+    x = tf.nn.relu(x)
+    x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn5"), lambda: batch_norm(x, False, name = "bn5")) # BN
     
-    # # 6
-    # w = tf.get_variable("w6", [3, 3, 128, 128])
-    # x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
-    # x = tf.nn.relu(x)
-    # x = batch_norm(x, is_train, name = "bn6") # BN
-    # x = tf.layers.max_pooling2d(x, 2, 2) # Pooling
-    # x = tf.layers.dropout(x, rate=0.4, training=is_train) # Dropout
+    # 6
+    w = tf.get_variable("w6", [3, 3, 128, 128])
+    x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
+    x = tf.nn.relu(x)
+    x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn6"), lambda: batch_norm(x, False, name = "bn6")) # BN
+    x = tf.layers.max_pooling2d(x, 2, 2) # Pooling
+    x = tf.layers.dropout(x, rate=0.4, training=is_training) # Dropout
 
-  x = tf.reshape(x, [-1, 56 * 56 * 32])
+  x = tf.reshape(x, [-1, 7 * 7 * 128])
   curr_c = x.get_shape()[-1].value
-  with tf.variable_scope("logits", reuse=tf.AUTO_REUSE):
-    w = tf.get_variable("w", [curr_c, n_outputs])
+  with tf.variable_scope("fc", reuse=tf.AUTO_REUSE):
+    w = tf.get_variable("w1", [curr_c, 4096])
+    x = tf.matmul(x, w)
+    w = tf.get_variable("w2", [4096, n_outputs])
     logits = tf.matmul(x, w)
   return logits
 

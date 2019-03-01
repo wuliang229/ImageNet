@@ -93,14 +93,13 @@ def main(_):
         for step in range(1, FLAGS.train_steps + 1):
           
           # Run respective ops for each training step
-          # labels, loss, _, preds = sess.run([ops["labels"], ops["train_loss"], ops["train_op"], ops["preds"]])
-          sess.run(ops["train_op"], feed_dict = {ops["is_training"]: True})
-          # print(tf.eval(ops["is_training"]))
+          labels, loss, _, preds = sess.run([ops["labels"], ops["train_loss"], ops["train_op"], ops["preds"]], feed_dict = {ops["is_training"]: True})
+          # sess.run(ops["train_op"], )
 
-          # if step > 0 and step % 10 == 0:
-          #   acc = np.sum(preds == labels) / len(labels)
-          #   print("Epoch %d Batch %d: loss = %.3f train_accuracy = %.3f" %
-          #         (epoch, step, loss, acc))
+          if step > 0 and step % 100 == 0:
+            acc = np.sum(preds == labels) / len(labels)
+            print("Epoch %d Batch %d: loss = %.3f train_accuracy = %.3f" %
+                  (epoch, step, loss, acc))
 
           if step % FLAGS.log_every == 0:
             # this will reset train_dataset as well, doesn't matter as long as FLAGS.log_every == FLAGS.train_steps

@@ -21,7 +21,7 @@ python3 main.py \
   --data_path="." \
   --output_dir="outputs" \
   --n_classes=50 \
-  --n_epochs=2 \
+  --n_epochs=50 \
   --train_steps=700 \
   --batch_size=32 \
   --log_every=700 \
