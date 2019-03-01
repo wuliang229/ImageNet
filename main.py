@@ -94,8 +94,8 @@ def main(_):
           
           # Run respective ops for each training step
           # labels, loss, _, preds = sess.run([ops["labels"], ops["train_loss"], ops["train_op"], ops["preds"]])
-          sess.run(ops["train_op"])
-          # loss /= len(labels)
+          sess.run(ops["train_op"], feed_dict = {ops["is_training"]: True})
+          # print(tf.eval(ops["is_training"]))
 
           # if step > 0 and step % 10 == 0:
           #   acc = np.sum(preds == labels) / len(labels)
@@ -126,14 +126,14 @@ def get_eval_accuracy(ops, sess, step, name="val"):
 
   while True:
     try:
-      preds, pred_labels = sess.run([preds_ops, labels])
+      preds, pred_labels = sess.run([preds_ops, labels], feed_dict = {ops["is_training"]: False})
       n_samples += len(pred_labels)
       total_val_acc += np.sum(preds == pred_labels)
     except tf.errors.OutOfRangeError:
       break
 
   total_val_acc /= n_samples
-  
+
   log_string = "\n"
   log_string += "step={0:<6d}".format(step)
   log_string += " acc={0:.3f} against {1:<3d} samples\n".format(
