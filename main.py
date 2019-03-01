@@ -76,7 +76,7 @@ def main(_):
     ops = get_ops(data_dict)
 
     print("-" * 80)
-    
+
     print("Starting session")
     config = tf.ConfigProto(allow_soft_placement=True)
 
@@ -91,16 +91,19 @@ def main(_):
       for epoch in range(1, FLAGS.n_epochs + 1):
         sess.run(ops["train_iterator"])  # init dataset iterator
         for step in range(1, FLAGS.train_steps + 1):
-          # TODO: run respective ops for each training step
-          loss = 0.0
+          
+          # Run respective ops for each training step
+          # labels, loss, _, preds = sess.run([ops["labels"], ops["train_loss"], ops["train_op"], ops["preds"]])
+          sess.run(ops["train_op"])
+          # loss /= len(labels)
 
-          if step > 0 and step % 10 == 0:
-            acc = 0.0
-            print("Epoch %d Batch %d: loss = %.3f train_accuracy = %.3f" %
-                  (epoch, step, loss, acc))
+          # if step > 0 and step % 10 == 0:
+          #   acc = np.sum(preds == labels) / len(labels)
+          #   print("Epoch %d Batch %d: loss = %.3f train_accuracy = %.3f" %
+          #         (epoch, step, loss, acc))
 
           if step % FLAGS.log_every == 0:
-            # this will reset train_dataset as well
+            # this will reset train_dataset as well, doesn't matter as long as FLAGS.log_every == FLAGS.train_steps
             get_eval_accuracy(ops, sess, step, "val")
 
       print("-" * 80)
@@ -114,12 +117,23 @@ def get_eval_accuracy(ops, sess, step, name="val"):
   else:
     sess.run(ops["test_iterator"])
 
-  n_samples, n_corrects = 0, 0
+  preds_ops = ops["preds"]
+  labels = ops["labels"]
 
-  # TODO: get accuracy for the whole dataset
-  total_val_acc = 0.0
+  # Get accuracy for the whole dataset
   n_samples = 0
+  total_val_acc = 0.0
 
+  while True:
+    try:
+      preds, pred_labels = sess.run([preds_ops, labels])
+      n_samples += len(pred_labels)
+      total_val_acc += np.sum(preds == pred_labels)
+    except tf.errors.OutOfRangeError:
+      break
+
+  total_val_acc /= n_samples
+  
   log_string = "\n"
   log_string += "step={0:<6d}".format(step)
   log_string += " acc={0:.3f} against {1:<3d} samples\n".format(

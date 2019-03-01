@@ -9,8 +9,8 @@ python3 main.py \
   --output_dir="outputs" \
   --n_classes=50 \
   --n_epochs=50 \
-  --train_steps=10000 \
+  --train_steps=700 \
   --batch_size=32 \
-  --log_every=1000 \
+  --log_every=700 \
   "$@"
 
