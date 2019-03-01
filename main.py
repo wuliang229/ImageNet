@@ -76,41 +76,36 @@ def main(_):
     ops = get_ops(data_dict)
 
     print("-" * 80)
-
-
     
+    print("Starting session")
+    config = tf.ConfigProto(allow_soft_placement=True)
 
+    # hook up with a session to train
+    with tf.train.SingularMonitoredSession(
+        config=config, checkpoint_dir=FLAGS.output_dir) as sess:
 
-    
-    # print("Starting session")
-    # config = tf.ConfigProto(allow_soft_placement=True)
+      # training loop
+      print("-" * 80)
+      print("Starting training")
 
-    # # hook up with a session to train
-    # with tf.train.SingularMonitoredSession(
-    #     config=config, checkpoint_dir=FLAGS.output_dir) as sess:
+      for epoch in range(1, FLAGS.n_epochs + 1):
+        sess.run(ops["train_iterator"])  # init dataset iterator
+        for step in range(1, FLAGS.train_steps + 1):
+          # TODO: run respective ops for each training step
+          loss = 0.0
 
-    #   # training loop
-    #   print("-" * 80)
-    #   print("Starting training")
+          if step > 0 and step % 10 == 0:
+            acc = 0.0
+            print("Epoch %d Batch %d: loss = %.3f train_accuracy = %.3f" %
+                  (epoch, step, loss, acc))
 
-    #   for epoch in range(1, FLAGS.n_epochs + 1):
-    #     sess.run(ops["train_iterator"])  # init dataset iterator
-    #     for step in range(1, FLAGS.train_steps + 1):
-    #       # TODO: run respective ops for each training step
-    #       loss = 0.0
+          if step % FLAGS.log_every == 0:
+            # this will reset train_dataset as well
+            get_eval_accuracy(ops, sess, step, "val")
 
-    #       if step > 0 and step % 10 == 0:
-    #         acc = 0.0
-    #         print("Epoch %d Batch %d: loss = %.3f train_accuracy = %.3f" %
-    #               (epoch, step, loss, acc))
-
-    #       if step % FLAGS.log_every == 0:
-    #         # this will reset train_dataset as well
-    #         get_eval_accuracy(ops, sess, step, "val")
-
-    #   print("-" * 80)
-    #   print("Training done. Eval on TEST set")
-    #   get_eval_accuracy(ops, sess, step, "test")
+      print("-" * 80)
+      print("Training done. Eval on TEST set")
+      get_eval_accuracy(ops, sess, step, "test")
 
 
 def get_eval_accuracy(ops, sess, step, name="val"):

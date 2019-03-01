@@ -38,29 +38,30 @@ def parse_data(dir_path='tiny-imagenet-200', n_classes_limit=N_CLASSES_LIMIT):
     test_imgs, test_labels = [], []
 
     for subdir in subdirs:
-      c = 0  # for each subdir (i.e. label), take first 50 samples for test
-      subdir_path = os.path.join(train_dir, subdir, "images")
-      imgs = os.listdir(subdir_path)
+      if subdir != ".DS_Store": # On Mac only
+        c = 0  # for each subdir (i.e. label), take first 50 samples for test
+        subdir_path = os.path.join(train_dir, subdir, "images")
+        imgs = os.listdir(subdir_path)
 
-      try:
-        label_idx = wnids[subdir]
-      except:
-        continue
-
-      for img in imgs:
-        full_img_path = os.path.join(subdir_path, img)
-        if not os.path.exists(full_img_path):
-          print("%s not existed ..." % full_img_path)
+        try:
+          label_idx = wnids[subdir]
+        except:
           continue
 
-        if c < 50:
-          test_imgs.append(full_img_path)
-          test_labels.append(label_idx)
-        else:
-          train_imgs.append(full_img_path)
-          train_labels.append(label_idx)
+        for img in imgs:
+          full_img_path = os.path.join(subdir_path, img)
+          if not os.path.exists(full_img_path):
+            print("%s not existed ..." % full_img_path)
+            continue
 
-        c += 1
+          if c < 50:
+            test_imgs.append(full_img_path)
+            test_labels.append(label_idx)
+          else:
+            train_imgs.append(full_img_path)
+            train_labels.append(label_idx)
+
+          c += 1
 
     return train_imgs, train_labels, test_imgs, test_labels
 
