@@ -6,7 +6,7 @@ SEED = 15121
 
 
 def _inference(images,
-               model_type='vgg16',
+               model_type,
                is_train=True,
                n_outputs=20):
   if model_type == 'naive':
@@ -37,6 +37,10 @@ def _naive_inference(images,
   return logits
 
 
+def _my_model(images, n_outputs=50):
+  pass
+
+
 def create_tf_ops(data_dict,
                   model_type='conv',
                   n_outputs=20,
@@ -58,7 +62,7 @@ def create_tf_ops(data_dict,
   )
   imgs, labels = shared_iterator.get_next()
 
-  # Indicates whether we are in training or in test mode for inferennce graph
+  # Indicates whether we are in training or in test mode for inference graph
   is_training = tf.placeholder(tf.bool)
 
   # shared weights for inference as well

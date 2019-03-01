@@ -2,10 +2,7 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import sys
-import numpy as np
 import tensorflow as tf
-
 
 user_flags = []
 
@@ -63,4 +60,3 @@ def count_model_params(tf_variables):
     total += variable_parameters
   print("Total number of parameters: " + str(total))
   return 0
-

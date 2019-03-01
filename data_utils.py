@@ -23,7 +23,7 @@ def parse_data(dir_path='tiny-imagenet-200', n_classes_limit=N_CLASSES_LIMIT):
         wnids[line.strip()] = c
         c += 1
 
-        # only take 15 labels
+        # only take 50 labels
         if c == n_classes_limit:
           break
 
@@ -105,13 +105,11 @@ def parse_data(dir_path='tiny-imagenet-200', n_classes_limit=N_CLASSES_LIMIT):
     "test_labels": test_labels
   }
 
-  return data_dict
+  return data_dict # A dictionary of lists of data paths and labels
 
 
 def _pre_process(img, label):
-  """Process image only, input should be Tensors
-  
-    TODO: Applied for train dataset only. 
+  """Process image only, input should be Tensors. Applied for train dataset only. 
   """
   img = tf.pad(img, [[4, 4], [4, 4], [0, 0]])
   img = tf.random_crop(img, [56, 56, 3])
@@ -122,9 +120,7 @@ def _pre_process(img, label):
 
 
 def _parse_function(filename, label):
-  """Read filepath into TF Tensors
-  
-    TODO: Applied for all train, val, test datasets 
+  """Read filepath into TF Tensors. Applied for all train, val, test datasets 
   """
   image_string = tf.read_file(filename)
   image_decoded = tf.image.decode_jpeg(image_string, channels=3)
@@ -139,8 +135,10 @@ def create_batch_tf_dataset(data_dict,
                             n_workers=10,
                             buffer_size=10000,
                             ):
-  """ TODO: similar to CIFAR10, create batched datasets for train, val, 
-    and test  
+  """ Similar to CIFAR10, create batched datasets for train, val, 
+    and test.
+
+    data_dict is a dictionary of lists of data
   """
 
 
@@ -148,26 +146,24 @@ def create_batch_tf_dataset(data_dict,
   train_imgs = tf.constant(data_dict["train_imgs"])
   train_labels = tf.constant(data_dict["train_labels"])
   train_dataset = tf.data.Dataset.from_tensor_slices((train_imgs, train_labels))
+  train_dataset = train_dataset.map(_parse_function, num_parallel_calls=n_workers)
+  train_dataset = train_dataset.map(_pre_process, num_parallel_calls=n_workers)
+  batched_train_dataset = train_dataset.repeat().shuffle(buffer_size).batch(batch_size)
 
-  # TODO: your code here
-
-  batched_train_dataset = None
 
   # val dataset
   val_imgs = tf.constant(data_dict["val_imgs"])
   val_labels = tf.constant(data_dict["val_labels"])
-
-  # TODO: your code here
-
-  batched_val_dataset = None
+  val_dataset = tf.data.Dataset.from_tensor_slices((val_imgs, val_labels))
+  val_dataset = val_dataset.map(_parse_function, num_parallel_calls=n_workers)
+  batched_val_dataset = val_dataset.batch(batch_size)
 
   # test dataset
   test_imgs = tf.constant(data_dict["test_imgs"])
   test_labels = tf.constant(data_dict["test_labels"])
-
-  # TODO: your code here
-
-  batched_test_dataset = None
+  test_dataset = tf.data.Dataset.from_tensor_slices((test_imgs, test_labels))
+  test_dataset = test_dataset.map(_parse_function, num_parallel_calls=n_workers)
+  batched_test_dataset = test_dataset.batch(batch_size)
 
   return {
     "train": batched_train_dataset,
