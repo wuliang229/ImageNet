@@ -1,0 +1,324 @@
+--------------------------------------------------------------------------------
+Path outputs exists. Remove and remake.
+--------------------------------------------------------------------------------
+batch_size....................................................................64
+data_path.......................................................................
+init_lr....................................................................0.001
+log_every....................................................................350
+model_name..............................................................my_model
+n_classes.....................................................................50
+n_epochs......................................................................50
+output_dir...............................................................outputs
+reset_output_dir............................................................True
+train_steps..................................................................350
+50 labels
+--------------------------------------------------------------------------------
+Creating a 'my_model' model
+--------------------------------------------------------------------------------
+Starting session
+--------------------------------------------------------------------------------
+Starting training
+Epoch 1 Batch 100: loss = 5.884 train_accuracy = 0.109
+Epoch 1 Batch 200: loss = 4.449 train_accuracy = 0.078
+Epoch 1 Batch 300: loss = 5.230 train_accuracy = 0.156
+
+step=350    acc=0.092 against 2500 samples
+
+Epoch 2 Batch 100: loss = 4.823 train_accuracy = 0.078
+Epoch 2 Batch 200: loss = 4.631 train_accuracy = 0.172
+Epoch 2 Batch 300: loss = 4.922 train_accuracy = 0.094
+
+step=350    acc=0.108 against 2500 samples
+
+Epoch 3 Batch 100: loss = 4.086 train_accuracy = 0.078
+Epoch 3 Batch 200: loss = 4.427 train_accuracy = 0.141
+Epoch 3 Batch 300: loss = 4.045 train_accuracy = 0.172
+
+step=350    acc=0.126 against 2500 samples
+
+Epoch 4 Batch 100: loss = 3.816 train_accuracy = 0.234
+Epoch 4 Batch 200: loss = 3.731 train_accuracy = 0.156
+Epoch 4 Batch 300: loss = 2.949 train_accuracy = 0.188
+
+step=350    acc=0.159 against 2500 samples
+
+Epoch 5 Batch 100: loss = 3.766 train_accuracy = 0.125
+Epoch 5 Batch 200: loss = 3.712 train_accuracy = 0.219
+Epoch 5 Batch 300: loss = 3.454 train_accuracy = 0.219
+
+step=350    acc=0.201 against 2500 samples
+
+Epoch 6 Batch 100: loss = 3.654 train_accuracy = 0.234
+Epoch 6 Batch 200: loss = 3.594 train_accuracy = 0.203
+Epoch 6 Batch 300: loss = 3.694 train_accuracy = 0.203
+
+step=350    acc=0.179 against 2500 samples
+
+Epoch 7 Batch 100: loss = 3.121 train_accuracy = 0.250
+Epoch 7 Batch 200: loss = 3.759 train_accuracy = 0.219
+Epoch 7 Batch 300: loss = 3.615 train_accuracy = 0.250
+
+step=350    acc=0.213 against 2500 samples
+
+Epoch 8 Batch 100: loss = 3.138 train_accuracy = 0.297
+Epoch 8 Batch 200: loss = 3.248 train_accuracy = 0.219
+Epoch 8 Batch 300: loss = 2.303 train_accuracy = 0.438
+
+step=350    acc=0.234 against 2500 samples
+
+Epoch 9 Batch 100: loss = 3.002 train_accuracy = 0.297
+Epoch 9 Batch 200: loss = 2.687 train_accuracy = 0.250
+Epoch 9 Batch 300: loss = 2.761 train_accuracy = 0.312
+
+step=350    acc=0.250 against 2500 samples
+
+Epoch 10 Batch 100: loss = 2.856 train_accuracy = 0.391
+Epoch 10 Batch 200: loss = 3.109 train_accuracy = 0.391
+Epoch 10 Batch 300: loss = 2.989 train_accuracy = 0.250
+
+step=350    acc=0.266 against 2500 samples
+
+Epoch 11 Batch 100: loss = 3.008 train_accuracy = 0.344
+Epoch 11 Batch 200: loss = 3.325 train_accuracy = 0.234
+Epoch 11 Batch 300: loss = 2.937 train_accuracy = 0.297
+
+step=350    acc=0.269 against 2500 samples
+
+Epoch 12 Batch 100: loss = 3.719 train_accuracy = 0.156
+Epoch 12 Batch 200: loss = 2.834 train_accuracy = 0.297
+Epoch 12 Batch 300: loss = 2.485 train_accuracy = 0.297
+
+step=350    acc=0.296 against 2500 samples
+
+Epoch 13 Batch 100: loss = 3.007 train_accuracy = 0.297
+Epoch 13 Batch 200: loss = 2.604 train_accuracy = 0.328
+Epoch 13 Batch 300: loss = 2.567 train_accuracy = 0.406
+
+step=350    acc=0.284 against 2500 samples
+
+Epoch 14 Batch 100: loss = 2.900 train_accuracy = 0.297
+Epoch 14 Batch 200: loss = 2.685 train_accuracy = 0.234
+Epoch 14 Batch 300: loss = 2.186 train_accuracy = 0.531
+
+step=350    acc=0.318 against 2500 samples
+
+Epoch 15 Batch 100: loss = 2.690 train_accuracy = 0.344
+Epoch 15 Batch 200: loss = 2.730 train_accuracy = 0.312
+Epoch 15 Batch 300: loss = 2.469 train_accuracy = 0.359
+
+step=350    acc=0.321 against 2500 samples
+
+Epoch 16 Batch 100: loss = 2.687 train_accuracy = 0.328
+Epoch 16 Batch 200: loss = 2.953 train_accuracy = 0.266
+Epoch 16 Batch 300: loss = 2.144 train_accuracy = 0.406
+
+step=350    acc=0.334 against 2500 samples
+
+Epoch 17 Batch 100: loss = 2.888 train_accuracy = 0.312
+Epoch 17 Batch 200: loss = 2.711 train_accuracy = 0.344
+Epoch 17 Batch 300: loss = 2.168 train_accuracy = 0.406
+
+step=350    acc=0.330 against 2500 samples
+
+Epoch 18 Batch 100: loss = 2.627 train_accuracy = 0.312
+Epoch 18 Batch 200: loss = 2.623 train_accuracy = 0.391
+Epoch 18 Batch 300: loss = 2.532 train_accuracy = 0.312
+
+step=350    acc=0.339 against 2500 samples
+
+Epoch 19 Batch 100: loss = 2.614 train_accuracy = 0.375
+Epoch 19 Batch 200: loss = 2.971 train_accuracy = 0.312
+Epoch 19 Batch 300: loss = 2.391 train_accuracy = 0.359
+
+step=350    acc=0.335 against 2500 samples
+
+Epoch 20 Batch 100: loss = 2.689 train_accuracy = 0.328
+Epoch 20 Batch 200: loss = 2.238 train_accuracy = 0.359
+Epoch 20 Batch 300: loss = 2.513 train_accuracy = 0.328
+
+step=350    acc=0.343 against 2500 samples
+
+Epoch 21 Batch 100: loss = 2.442 train_accuracy = 0.328
+Epoch 21 Batch 200: loss = 2.354 train_accuracy = 0.438
+Epoch 21 Batch 300: loss = 2.083 train_accuracy = 0.438
+
+step=350    acc=0.367 against 2500 samples
+
+Epoch 22 Batch 100: loss = 2.423 train_accuracy = 0.375
+Epoch 22 Batch 200: loss = 2.089 train_accuracy = 0.438
+Epoch 22 Batch 300: loss = 2.366 train_accuracy = 0.375
+
+step=350    acc=0.348 against 2500 samples
+
+Epoch 23 Batch 100: loss = 2.530 train_accuracy = 0.422
+Epoch 23 Batch 200: loss = 2.115 train_accuracy = 0.422
+Epoch 23 Batch 300: loss = 2.076 train_accuracy = 0.375
+
+step=350    acc=0.367 against 2500 samples
+
+Epoch 24 Batch 100: loss = 2.380 train_accuracy = 0.391
+Epoch 24 Batch 200: loss = 2.589 train_accuracy = 0.344
+Epoch 24 Batch 300: loss = 2.438 train_accuracy = 0.391
+
+step=350    acc=0.376 against 2500 samples
+
+Epoch 25 Batch 100: loss = 1.861 train_accuracy = 0.516
+Epoch 25 Batch 200: loss = 1.838 train_accuracy = 0.484
+Epoch 25 Batch 300: loss = 2.053 train_accuracy = 0.391
+
+step=350    acc=0.370 against 2500 samples
+
+Epoch 26 Batch 100: loss = 1.890 train_accuracy = 0.469
+Epoch 26 Batch 200: loss = 2.408 train_accuracy = 0.359
+Epoch 26 Batch 300: loss = 2.294 train_accuracy = 0.297
+
+step=350    acc=0.390 against 2500 samples
+
+Epoch 27 Batch 100: loss = 2.104 train_accuracy = 0.469
+Epoch 27 Batch 200: loss = 2.308 train_accuracy = 0.344
+Epoch 27 Batch 300: loss = 1.891 train_accuracy = 0.516
+
+step=350    acc=0.396 against 2500 samples
+
+Epoch 28 Batch 100: loss = 2.066 train_accuracy = 0.391
+Epoch 28 Batch 200: loss = 1.993 train_accuracy = 0.531
+Epoch 28 Batch 300: loss = 2.475 train_accuracy = 0.422
+
+step=350    acc=0.387 against 2500 samples
+
+Epoch 29 Batch 100: loss = 2.126 train_accuracy = 0.391
+Epoch 29 Batch 200: loss = 2.208 train_accuracy = 0.422
+Epoch 29 Batch 300: loss = 2.308 train_accuracy = 0.469
+
+step=350    acc=0.388 against 2500 samples
+
+Epoch 30 Batch 100: loss = 2.242 train_accuracy = 0.344
+Epoch 30 Batch 200: loss = 2.592 train_accuracy = 0.375
+Epoch 30 Batch 300: loss = 2.118 train_accuracy = 0.375
+
+step=350    acc=0.395 against 2500 samples
+
+Epoch 31 Batch 100: loss = 2.077 train_accuracy = 0.438
+Epoch 31 Batch 200: loss = 1.964 train_accuracy = 0.500
+Epoch 31 Batch 300: loss = 2.096 train_accuracy = 0.375
+
+step=350    acc=0.417 against 2500 samples
+
+Epoch 32 Batch 100: loss = 2.336 train_accuracy = 0.453
+Epoch 32 Batch 200: loss = 2.295 train_accuracy = 0.297
+Epoch 32 Batch 300: loss = 1.878 train_accuracy = 0.500
+
+step=350    acc=0.399 against 2500 samples
+
+Epoch 33 Batch 100: loss = 1.994 train_accuracy = 0.484
+Epoch 33 Batch 200: loss = 1.844 train_accuracy = 0.453
+Epoch 33 Batch 300: loss = 1.684 train_accuracy = 0.516
+
+step=350    acc=0.408 against 2500 samples
+
+Epoch 34 Batch 100: loss = 2.431 train_accuracy = 0.375
+Epoch 34 Batch 200: loss = 2.088 train_accuracy = 0.375
+Epoch 34 Batch 300: loss = 2.315 train_accuracy = 0.391
+
+step=350    acc=0.412 against 2500 samples
+
+Epoch 35 Batch 100: loss = 2.059 train_accuracy = 0.469
+Epoch 35 Batch 200: loss = 2.254 train_accuracy = 0.453
+Epoch 35 Batch 300: loss = 1.814 train_accuracy = 0.531
+
+step=350    acc=0.410 against 2500 samples
+
+Epoch 36 Batch 100: loss = 2.174 train_accuracy = 0.391
+Epoch 36 Batch 200: loss = 1.961 train_accuracy = 0.453
+Epoch 36 Batch 300: loss = 1.960 train_accuracy = 0.469
+
+step=350    acc=0.421 against 2500 samples
+
+Epoch 37 Batch 100: loss = 1.842 train_accuracy = 0.469
+Epoch 37 Batch 200: loss = 1.997 train_accuracy = 0.438
+Epoch 37 Batch 300: loss = 2.046 train_accuracy = 0.453
+
+step=350    acc=0.402 against 2500 samples
+
+Epoch 38 Batch 100: loss = 1.917 train_accuracy = 0.484
+Epoch 38 Batch 200: loss = 2.545 train_accuracy = 0.344
+Epoch 38 Batch 300: loss = 2.057 train_accuracy = 0.500
+
+step=350    acc=0.434 against 2500 samples
+
+Epoch 39 Batch 100: loss = 2.282 train_accuracy = 0.375
+Epoch 39 Batch 200: loss = 2.058 train_accuracy = 0.469
+Epoch 39 Batch 300: loss = 1.385 train_accuracy = 0.578
+
+step=350    acc=0.416 against 2500 samples
+
+Epoch 40 Batch 100: loss = 2.009 train_accuracy = 0.422
+Epoch 40 Batch 200: loss = 2.015 train_accuracy = 0.484
+Epoch 40 Batch 300: loss = 1.712 train_accuracy = 0.516
+
+step=350    acc=0.431 against 2500 samples
+
+Epoch 41 Batch 100: loss = 1.948 train_accuracy = 0.438
+Epoch 41 Batch 200: loss = 2.275 train_accuracy = 0.391
+Epoch 41 Batch 300: loss = 1.984 train_accuracy = 0.375
+
+step=350    acc=0.421 against 2500 samples
+
+Epoch 42 Batch 100: loss = 1.953 train_accuracy = 0.422
+Epoch 42 Batch 200: loss = 2.265 train_accuracy = 0.391
+Epoch 42 Batch 300: loss = 1.788 train_accuracy = 0.422
+
+step=350    acc=0.436 against 2500 samples
+
+Epoch 43 Batch 100: loss = 1.983 train_accuracy = 0.516
+Epoch 43 Batch 200: loss = 1.947 train_accuracy = 0.406
+Epoch 43 Batch 300: loss = 1.755 train_accuracy = 0.484
+
+step=350    acc=0.424 against 2500 samples
+
+Epoch 44 Batch 100: loss = 1.416 train_accuracy = 0.641
+Epoch 44 Batch 200: loss = 1.953 train_accuracy = 0.422
+Epoch 44 Batch 300: loss = 2.034 train_accuracy = 0.438
+
+step=350    acc=0.447 against 2500 samples
+
+Epoch 45 Batch 100: loss = 2.000 train_accuracy = 0.484
+Epoch 45 Batch 200: loss = 1.703 train_accuracy = 0.484
+Epoch 45 Batch 300: loss = 1.896 train_accuracy = 0.484
+
+step=350    acc=0.436 against 2500 samples
+
+Epoch 46 Batch 100: loss = 2.102 train_accuracy = 0.375
+Epoch 46 Batch 200: loss = 2.113 train_accuracy = 0.406
+Epoch 46 Batch 300: loss = 2.070 train_accuracy = 0.422
+
+step=350    acc=0.445 against 2500 samples
+
+Epoch 47 Batch 100: loss = 2.000 train_accuracy = 0.422
+Epoch 47 Batch 200: loss = 2.141 train_accuracy = 0.453
+Epoch 47 Batch 300: loss = 2.036 train_accuracy = 0.484
+
+step=350    acc=0.452 against 2500 samples
+
+Epoch 48 Batch 100: loss = 1.801 train_accuracy = 0.516
+Epoch 48 Batch 200: loss = 1.811 train_accuracy = 0.453
+Epoch 48 Batch 300: loss = 1.631 train_accuracy = 0.500
+
+step=350    acc=0.437 against 2500 samples
+
+Epoch 49 Batch 100: loss = 2.003 train_accuracy = 0.500
+Epoch 49 Batch 200: loss = 1.773 train_accuracy = 0.500
+Epoch 49 Batch 300: loss = 1.710 train_accuracy = 0.547
+
+step=350    acc=0.454 against 2500 samples
+
+Epoch 50 Batch 100: loss = 1.731 train_accuracy = 0.500
+Epoch 50 Batch 200: loss = 1.773 train_accuracy = 0.469
+Epoch 50 Batch 300: loss = 1.973 train_accuracy = 0.484
+
+step=350    acc=0.452 against 2500 samples
+
+--------------------------------------------------------------------------------
+Training done. Eval on TEST set
+
+step=350    acc=0.470 against 2500 samples

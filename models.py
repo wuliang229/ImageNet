@@ -20,9 +20,7 @@ def _inference(images,
 def _naive_inference(images,
                      is_training=True,
                      n_outputs=50):
-  """Naive model using only 1 FC layer, no dropout. For reference purpose.
-  
-    Validation and Test accuracy should be around 26%. 
+  """Naive model using only 1 FC layer, no dropout. For reference purpose.  
   """
   H, W, C = (images.get_shape()[1].value,
              images.get_shape()[2].value,
@@ -46,13 +44,13 @@ def _my_model(images, is_training, n_outputs=50):
 
   with tf.variable_scope("cnn", reuse = tf.AUTO_REUSE):
     # 1
-    w = tf.get_variable("w1", [3, 3, 3, 32])
+    w = tf.get_variable("w1", [3, 3, 3, 64])
     x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
     x = tf.nn.relu(x)
     x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn1"), lambda: batch_norm(x, False, name = "bn1")) # BN
 
     # 2
-    w = tf.get_variable("w2", [3, 3, 32, 32])
+    w = tf.get_variable("w2", [3, 3, 64, 64])
     x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
     x = tf.nn.relu(x)
     x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn2"), lambda: batch_norm(x, False, name = "bn2")) # BN
@@ -60,13 +58,13 @@ def _my_model(images, is_training, n_outputs=50):
     x = tf.layers.dropout(x, rate=0.2, training=is_training) # Dropout
 
     # 3
-    w = tf.get_variable("w3", [3, 3, 32, 64])
+    w = tf.get_variable("w3", [3, 3, 64, 128])
     x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
     x = tf.nn.relu(x)
     x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn3"), lambda: batch_norm(x, False, name = "bn3")) # BN
 
     # 4
-    w = tf.get_variable("w4", [3, 3, 64, 64])
+    w = tf.get_variable("w4", [3, 3, 128, 128])
     x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
     x = tf.nn.relu(x)
     x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn4"), lambda: batch_norm(x, False, name = "bn4")) # BN
@@ -74,24 +72,34 @@ def _my_model(images, is_training, n_outputs=50):
     x = tf.layers.dropout(x, rate=0.3, training=is_training) # Dropout
 
     # 5
-    w = tf.get_variable("w5", [3, 3, 64, 128])
+    w = tf.get_variable("w5", [3, 3, 128, 256])
     x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
     x = tf.nn.relu(x)
     x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn5"), lambda: batch_norm(x, False, name = "bn5")) # BN
     
     # 6
-    w = tf.get_variable("w6", [3, 3, 128, 128])
+    w = tf.get_variable("w6", [3, 3, 256, 512])
     x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
     x = tf.nn.relu(x)
     x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn6"), lambda: batch_norm(x, False, name = "bn6")) # BN
+
+    # 7
+    w = tf.get_variable("w7", [3, 3, 512, 512])
+    x = tf.nn.conv2d(x, w, padding = "SAME", strides = [1, 1, 1, 1])
+    x = tf.nn.relu(x)
+    x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn7"), lambda: batch_norm(x, False, name = "bn7")) # BN
     x = tf.layers.max_pooling2d(x, 2, 2) # Pooling
     x = tf.layers.dropout(x, rate=0.4, training=is_training) # Dropout
 
-  x = tf.reshape(x, [-1, 7 * 7 * 128])
+
+  x = tf.reshape(x, [-1, 7 * 7 * 512])
   curr_c = x.get_shape()[-1].value
   with tf.variable_scope("fc", reuse=tf.AUTO_REUSE):
     w = tf.get_variable("w1", [curr_c, 4096])
     x = tf.matmul(x, w)
+    x = tf.nn.relu(x)
+    # x = tf.cond(is_training, lambda: batch_norm(x, True, name = "bn"), lambda: batch_norm(x, False, name = "bn")) # BN
+    x = tf.layers.dropout(x, rate=0.5, training=is_training) # Dropout
     w = tf.get_variable("w2", [4096, n_outputs])
     logits = tf.matmul(x, w)
   return logits
